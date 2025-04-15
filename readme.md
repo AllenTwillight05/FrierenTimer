@@ -20,41 +20,28 @@ RESET 重置
 
 #文件结构：
 
+```
 FrierenTimer/
-
 ├── readme.md
-
 ├── package.json
-
 ├── package-lock.json
-
 ├── main.js
-
 ├── preload.js
-
 ├── assets/
-
 │   ├── background/    #背景壁纸（视频）
-
 │   ├── sound/         #白噪音
-
 │   └── music/         #背景音乐
-
 ├── index.html
-
 ├── css/
-
 │   └── style.css
-
 └── js/
-
-|   └── app.js
-
+    └── app.js
+```
 
 
 #已有背景视频如下：
+```
 this.videoFiles = [
-
     'assets/background/write.mp4',
     'assets/background/water.mp4',
     'assets/background/fire.mp4',
@@ -62,18 +49,18 @@ this.videoFiles = [
     'assets/background/meteor.mp4',
     'assets/background/box.mp4'
 ];
-
+```
 
 #添加音乐格式如下：
 
+```
 {
-
     name: 'Goodbye for Now, Eisen',
     artist: 'Evan Call',
     url: 'assets/music/Goodbye for Now, Eisen.ogg',
     cover: 'assets/music/cover.webp'
 },
-
+```
 
 
 Q：是否需要删除node_modules等？
