@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>老东西计时器</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <video id="background-video" autoplay muted loop>
+        <source id="video-source" type="video/mp4">
+    </video>
+    
+    <div class="video-controls">
+        <button id="prev-video" class="video-btn">◀</button>
+        <button id="next-video" class="video-btn">▶</button>
+    </div>
+
+    <div class="time-container">
+        <div id="time-display">12:34</div>
+        <div id="date-display">
+            <span class="years-since-death">勇者ヒンメルが死んでから1年</span>
+            <span class="date-weekday">10月15日 星期日</span>
+        </div>
+    </div>
+
+    <div class="timer-controls">
+        <button id="start-btn" class="glass-btn">START</button>
+        <button id="pause-btn" class="glass-btn" style="display:none;">PAUSE</button>
+        <button id="reset-btn" class="glass-btn" style="display:none;">RESET</button>
+    </div>
+    
+    <div id="timer-display" class="glass-panel">00:00:00</div>
+    <div id="music-player"></div>
+
+    <div class="control-buttons">
+        <div class="white-noise-buttons">
+            <button class="glass-btn corner-btn noise-btn" data-src="assets/sound/rain.mp3">🌧️</button>
+            <button class="glass-btn corner-btn noise-btn" data-src="assets/sound/waves.mp3">🌊</button>
+            <button class="glass-btn corner-btn noise-btn" data-src="assets/sound/fireplace.mp3">🔥</button>
+        </div>
+        <button id="fullscreen-btn" class="glass-btn corner-btn">⛶</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+    <script>
+        // ================= 初始化背景视频 =================
+        // ================= 视频列表配置 =================
+        const videos = [
+            'write.mp4',
+            'water.mp4',
+            'fire.mp4',
+            'tomb.mp4',
+            'meteor.mp4',
+            'box.mp4'
+        ]
+        let currentVideoIndex = 0
+
+        async function updateVideo(filename) {
+            const videoPath = await window.electronAPI.loadAsset(`background/${filename}`)
+            document.getElementById('video-source').src = videoPath
+            document.getElementById('background-video').load()
+        }
+
+        document.getElementById('prev-video').addEventListener('click', () => {
+            currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length
+            updateVideo(videos[currentVideoIndex])
+        })
+
+        document.getElementById('next-video').addEventListener('click', () => {
+            currentVideoIndex = (currentVideoIndex + 1) % videos.length
+            updateVideo(videos[currentVideoIndex])
+        })
+
+        // ================= 白噪音处理 =================
+        document.querySelectorAll('.noise-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const soundFile = btn.dataset.src
+                window.electronAPI.loadAsset(soundFile).then(soundPath => {
+                    new Audio(soundPath).play()
+                })
+            })
+        })
+
+        // ================= 全屏控制 =================
+        document.getElementById('fullscreen-btn').addEventListener('click', () => {
+            if (document.fullscreenElement) {
+                document.exitFullscreen()
+            } else {
+                document.documentElement.requestFullscreen()
+            }
+        })
+    </script>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
