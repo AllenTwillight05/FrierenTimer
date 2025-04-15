@@ -23,6 +23,7 @@ RESET 重置
 ```
 FrierenTimer/
 ├── readme.md
+├── .gitignore
 ├── package.json
 ├── package-lock.json
 ├── main.js
