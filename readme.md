@@ -1,36 +1,60 @@
 一个芙莉莲主题自习时钟，背景6张动画壁纸可选，播放列表10首原声带，3种白噪音；白噪音与原声带音乐独立控制
 
+
 功能说明：
+
 ◀▶ 切换背景视频
+
 🌊 点击播放白噪音
+
 ⛶ 全屏显示
+
 播放器右下角可选随机/顺序播放，点击三条横线可展开音乐列表
+
 START 开始计时
+
 PAUSE/CONTINUE 暂停/继续
+
 RESET 重置
 
 
 #文件结构：
+
 FrierenTimer/
+
 ├── readme.md
+
 ├── package.json
+
 ├── package-lock.json
+
 ├── main.js
+
 ├── preload.js
+
 ├── assets/
+
 │   ├── background/    #背景壁纸（视频）
+
 │   ├── sound/         #白噪音
+
 │   └── music/         #背景音乐
+
 ├── index.html
+
 ├── css/
+
 │   └── style.css
+
 └── js/
-    └── app.js
+
+|   └── app.js
 
 
 
 #已有背景视频如下：
 this.videoFiles = [
+
     'assets/background/write.mp4',
     'assets/background/water.mp4',
     'assets/background/fire.mp4',
@@ -41,7 +65,9 @@ this.videoFiles = [
 
 
 #添加音乐格式如下：
+
 {
+
     name: 'Goodbye for Now, Eisen',
     artist: 'Evan Call',
     url: 'assets/music/Goodbye for Now, Eisen.ogg',
